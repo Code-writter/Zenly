@@ -84,27 +84,10 @@ export default function SideBar() {
   return (
     <div className="hidden border-r bg-muted/40 md:block">
       <div className="flex h-full max-h-screen flex-col">
-        <div className="shadow-sm flex items-center justify-between h-14 border-b p-1 lg:h-[60px] lg:px-2">
+        <div className="shadow-sm  flex items-center justify-center h-14 border-b p-1 lg:h-[60px] lg:px-2">
           <div className="flex items-center gap-2">
-            <span className="font-bold text-2xl">Zenly</span>
+            <span className="font-bold text-2xl text-center font-['Orbitron']">ZENLY</span>
           </div>
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="relative h-8 w-8 rounded-full">
-                <UserButton />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-56" align="end" forceMount>
-              <div className="flex items-center justify-start space-x-2 p-2">
-                <UserButton />
-                <span className="font-medium">{user?.fullName}</span>
-              </div>
-              <DropdownMenuItem className="cursor-pointer" onClick={() => signOut()}>
-                <LogOut className="mr-2 h-4 w-4" />
-                <span>Log out</span>
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
         </div>
         <nav className="grid items-start px-1 text-sm font-medium lg:px-4 py-1">
           {navItems.map(({ name, icon, link, id }, idx) => (

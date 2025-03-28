@@ -1,4 +1,4 @@
-import { Calendar, CalendarDays, CogIcon, Grid2X2, Inbox, NotepadText, Clock } from "lucide-react";
+import { Calendar, CalendarDays, CogIcon, Grid2X2, Inbox, NotepadText, Clock, PersonStanding } from "lucide-react";
 
 export const primaryNavItems = [
   {
@@ -36,10 +36,10 @@ export const primaryNavItems = [
     icon : <CalendarDays className="w-4 h-4" />
   },
   {
-    id: "timetable",
-    name: "Timetable",
-    link: "/dashboard/timetable",
-    icon: <Clock className="w-4 h-4" />
+    id: "Self-improvement",
+    name: "Self Improvement",
+    link: "/dashboard/self-improvement",
+    icon: <PersonStanding className="w-4 h-4" />
   }
 ];
 

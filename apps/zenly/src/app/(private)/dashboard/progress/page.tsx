@@ -2,7 +2,7 @@
 import SideBar from "@/components/full-components/Side-bar";
 import TodoList from "@/components/todos/todo-list";
 import ProgressGraph from "./_components/progress-graph";
-
+import UserButtonWithDropdown from "@/components/utils/userButton";
 
 export default function ProgressPage() {
   return (
