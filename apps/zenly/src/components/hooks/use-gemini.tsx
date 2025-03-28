@@ -5,8 +5,8 @@ import {
   optimizeResume, 
   ResumeData, 
   AnalysisResult 
-} from "@/services/gemini";
-import { useToast } from "@/hooks/use-toast";
+} from "@/components/Resume/services/gemini";
+import { useToast } from "@/components/hooks/use-toast";
 
 export function useGemini() {
   const [isGenerating, setIsGenerating] = useState(false);

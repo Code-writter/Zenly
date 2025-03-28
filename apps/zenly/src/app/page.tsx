@@ -6,7 +6,7 @@ import { SignedOut, SignInButton, UserButton, useUser } from "@clerk/nextjs";
 
 import { SignedIn } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import toast from "react-hot-toast";
 
 export default function Home(){
@@ -29,7 +29,9 @@ export default function Home(){
 
     return(
         <div>
-            <App />
+            <Suspense fallback={<Loader />}>
+                <App />
+            </Suspense>
         </div>
     )
 }

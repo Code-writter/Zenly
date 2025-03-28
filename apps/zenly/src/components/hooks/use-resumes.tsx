@@ -1,8 +1,8 @@
 
 import { useMutation, useQuery } from "convex/react";
-import { api } from "../../convex/_generated/api";
-import { Id } from "../../convex/_generated/";
-import { ResumeData } from "@/services/gemini";
+import { api } from "../../../convex/_generated/api";
+import { Id } from "../../../convex/_generated/dataModel";
+import { ResumeData } from "@/components/Resume/services/gemini";
 
 export function useResumes() {
   const createResume = useMutation(api.resumes.create);

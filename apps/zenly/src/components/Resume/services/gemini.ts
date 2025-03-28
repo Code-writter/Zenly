@@ -1,10 +1,9 @@
-
-import { GoogleGenerativeAI } from "@google/generative-ai";
+import { GoogleGenAI } from "@google/genai";
 
 // You'll need to add your API key here or use an environment variable
-const API_KEY = "YOUR_GEMINI_API_KEY";
+const API_KEY = "AIzaSyDpYv4v00ODdi7sdwxo9jIwZvpWGtnTDUc";
 
-const genAI = new GoogleGenerativeAI(API_KEY);
+const genAI = new GoogleGenAI({ apiKey: API_KEY });
 
 export interface ResumeData {
   personalInfo: {
@@ -12,7 +11,7 @@ export interface ResumeData {
     email: string;
     phone: string;
     location: string;
-    website?: string; // Make website optional to fix type errors
+    website?: string;
   };
   summary: string;
   experience: Array<{
@@ -49,8 +48,6 @@ export async function generateResumeFromJobDescription(
   jobDescription: string
 ): Promise<ResumeData> {
   try {
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro" });
-
     const prompt = `
       As an expert resume writer, create a professional resume for the following job position. 
       Job Title: ${jobTitle}
@@ -91,12 +88,17 @@ export async function generateResumeFromJobDescription(
       Make sure the experience, skills, and education directly relate to the job description.
     `;
 
-    const result = await model.generateContent(prompt);
-    const response = result.response;
-    const text = response.text();
+    const response = await genAI.models.generateContent({
+      model: "gemini-1.5-pro",
+      contents: prompt,
+    });
+    
+    if (!response.text) {
+      throw new Error("No response text received from Gemini");
+    }
     
     // Extract JSON from the response
-    const jsonMatch = text.match(/\{[\s\S]*\}/);
+    const jsonMatch = response.text.match(/\{[\s\S]*\}/);
     if (!jsonMatch) {
       throw new Error("Failed to parse JSON from Gemini response");
     }
@@ -115,8 +117,6 @@ export async function optimizeResume(
   resumeData: ResumeData
 ): Promise<AnalysisResult> {
   try {
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro" });
-
     const prompt = `
       As an expert ATS (Applicant Tracking System) analyst, optimize the following resume for the job position.
       
@@ -158,12 +158,17 @@ export async function optimizeResume(
       The optimizedResume should include improvements that address the ATS requirements.
     `;
 
-    const result = await model.generateContent(prompt);
-    const response = result.response;
-    const text = response.text();
+    const response = await genAI.models.generateContent({
+      model: "gemini-1.5-pro",
+      contents: prompt,
+    });
+    
+    if (!response.text) {
+      throw new Error("No response text received from Gemini");
+    }
     
     // Extract JSON from the response
-    const jsonMatch = text.match(/\{[\s\S]*\}/);
+    const jsonMatch = response.text.match(/\{[\s\S]*\}/);
     if (!jsonMatch) {
       throw new Error("Failed to parse JSON from Gemini response");
     }

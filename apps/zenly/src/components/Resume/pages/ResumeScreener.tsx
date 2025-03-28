@@ -1,13 +1,14 @@
+'use client'
 
 import React, { useState } from 'react';
-import Navbar from '@/components/layout/Navbar';
-import Footer from '@/components/layout/Footer';
-import UploadResumes from '@/components/resume-screener/UploadResumes';
-import CandidateResults from '@/components/resume-screener/CandidateResults';
-import { useToast } from '@/hooks/use-toast';
+// import Navbar from '@/components/layout/Navbar';
+// import Footer from '@/components/layout/Footer';
+import UploadResumes from '@/components/Resume/resume-screener/UploadResumes';
+import CandidateResults from '@/components/Resume/resume-screener/CandidateResults';
+import { useToast } from '@/components/hooks/use-toast';
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { useMutation } from "convex/react";
-import { api } from "../../convex/_generated/api";
+import { api } from "../../../../convex/_generated/api";
 
 // Mock data for demo
 const mockCandidates = [
@@ -196,7 +197,7 @@ const ResumeScreener = () => {
   
   return (
     <div className="min-h-screen flex flex-col">
-      <Navbar />
+      {/* <Navbar /> */}
       <main className="flex-grow py-10 px-4 bg-gray-50">
         <div className="container mx-auto">
           <div className="text-center mb-10">
@@ -225,7 +226,7 @@ const ResumeScreener = () => {
           )}
         </div>
       </main>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };

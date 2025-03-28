@@ -13,7 +13,7 @@ return(
                 <TextHoverEffect text="ZENLY" />
             </div>
             <span className="text-2xl md:text-[6rem] font-bold leading-none">
-              Scroll Animations
+            Organize, Optimize, Succeed – Smart To-Do Lists & AI-Powered Resumes!
             </span>
           </h1>
         </>

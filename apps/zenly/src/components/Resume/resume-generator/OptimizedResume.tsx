@@ -1,5 +1,5 @@
 
-import React from 'react';
+
 import { 
   Card, 
   CardContent, 
@@ -19,34 +19,8 @@ import {
   Globe,
   CheckCircle
 } from 'lucide-react';
-import { useToast } from '@/hooks/use-toast';
-
-interface ResumeData {
-  personalInfo: {
-    name: string;
-    email: string;
-    phone: string;
-    location: string;
-    website: string;
-  };
-  summary: string;
-  experience: {
-    title: string;
-    company: string;
-    location: string;
-    startDate: string;
-    endDate: string;
-    description: string;
-  }[];
-  education: {
-    degree: string;
-    school: string;
-    location: string;
-    graduationDate: string;
-    description: string;
-  }[];
-  skills: string;
-}
+import { useToast } from '@/components/hooks/use-toast';
+import { ResumeData } from '@/components/Resume/services/gemini';
 
 interface OptimizedResumeProps {
   resumeData: ResumeData;

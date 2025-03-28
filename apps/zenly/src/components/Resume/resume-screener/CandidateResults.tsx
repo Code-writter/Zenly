@@ -1,4 +1,4 @@
-
+'use client'
 import React, { useState } from 'react';
 import { 
   Card, 
@@ -54,10 +54,27 @@ interface Candidate {
   email: string;
   phone: string;
   matchScore: number;
-  experience: number;
-  education: string;
-  skills: string[];
-  missingSkills: string[];
+  experience: {
+    years: number;
+    relevant: boolean;
+    details: string;
+  };
+  education: {
+    level: string;
+    field: string;
+    relevance: string;
+  };
+  skills: {
+    matched: string[];
+    missing: string[];
+    additional: string[];
+  };
+  analysis: {
+    strengths: string[];
+    weaknesses: string[];
+    recommendations: string[];
+  };
+  summary: string;
   resumeUrl: string;
 }
 
@@ -106,15 +123,20 @@ const CandidateResults: React.FC<CandidateResultsProps> = ({
     .filter(candidate => 
       candidate.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       candidate.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      candidate.skills.some(skill => 
+      candidate.skills.matched.some(skill => 
         skill.toLowerCase().includes(searchTerm.toLowerCase())
       )
     )
     .sort((a, b) => {
-      if (sortField === 'matchScore' || sortField === 'experience') {
+      if (sortField === 'matchScore') {
         return sortDirection === 'asc' 
-          ? a[sortField] - b[sortField] 
-          : b[sortField] - a[sortField];
+          ? a.matchScore - b.matchScore 
+          : b.matchScore - a.matchScore;
+      }
+      if (sortField === 'experience') {
+        return sortDirection === 'asc'
+          ? a.experience.years - b.experience.years
+          : b.experience.years - a.experience.years;
       }
       
       const valueA = String(a[sortField]).toLowerCase();
@@ -284,19 +306,19 @@ const CandidateResults: React.FC<CandidateResultsProps> = ({
                         </div>
                       </TableCell>
                       <TableCell className="hidden lg:table-cell">
-                        <span className="font-medium">{candidate.experience}</span> years
-                        <div className="text-xs text-gray-500">{candidate.education}</div>
+                        <span className="font-medium">{candidate.experience.years}</span> years
+                        <div className="text-xs text-gray-500">{candidate.education.level} in {candidate.education.field}</div>
                       </TableCell>
                       <TableCell className="hidden lg:table-cell">
                         <div className="flex flex-wrap gap-1 max-w-xs">
-                          {candidate.skills.slice(0, 3).map((skill, i) => (
+                          {candidate.skills.matched.slice(0, 3).map((skill, i) => (
                             <Badge key={i} variant="outline" className="text-xs bg-gray-100">
                               {skill}
                             </Badge>
                           ))}
-                          {candidate.skills.length > 3 && (
+                          {candidate.skills.matched.length > 3 && (
                             <Badge variant="outline" className="text-xs bg-gray-100">
-                              +{candidate.skills.length - 3} more
+                              +{candidate.skills.matched.length - 3} more
                             </Badge>
                           )}
                         </div>
@@ -339,14 +361,30 @@ const CandidateResults: React.FC<CandidateResultsProps> = ({
                                 
                                 <div className="space-y-2">
                                   <h4 className="font-semibold">Experience</h4>
-                                  <p className="text-sm">{candidate.experience} years of relevant experience</p>
-                                  <p className="text-sm">{candidate.education}</p>
+                                  <p className="text-sm">{candidate.experience.years} years of {candidate.experience.relevant ? 'relevant' : 'total'} experience</p>
+                                  <p className="text-sm">{candidate.experience.details}</p>
+                                </div>
+                                
+                                <div className="space-y-2">
+                                  <h4 className="font-semibold">Education</h4>
+                                  <p className="text-sm">{candidate.education.level} in {candidate.education.field}</p>
+                                  <p className="text-sm">{candidate.education.relevance}</p>
                                 </div>
                                 
                                 <div className="space-y-2">
                                   <h4 className="font-semibold">Skills</h4>
                                   <div className="flex flex-wrap gap-2">
-                                    {candidate.skills.map((skill, i) => (
+                                    {candidate.skills.matched.map((skill, i) => (
+                                      <Badge key={i} variant="outline" className="bg-green-100 text-green-800">
+                                        {skill}
+                                      </Badge>
+                                    ))}
+                                    {candidate.skills.missing.map((skill, i) => (
+                                      <Badge key={i} variant="outline" className="bg-red-100 text-red-800">
+                                        {skill}
+                                      </Badge>
+                                    ))}
+                                    {candidate.skills.additional.map((skill, i) => (
                                       <Badge key={i} variant="outline" className="bg-gray-100">
                                         {skill}
                                       </Badge>
@@ -416,7 +454,7 @@ const CandidateResults: React.FC<CandidateResultsProps> = ({
                                   <h4 className="font-semibold">Required Skills</h4>
                                   <div className="space-y-1">
                                     {keySkills.map((skill, i) => {
-                                      const hasSkill = candidate.skills.includes(skill);
+                                      const hasSkill = candidate.skills.matched.includes(skill);
                                       return (
                                         <div 
                                           key={i} 
@@ -436,35 +474,34 @@ const CandidateResults: React.FC<CandidateResultsProps> = ({
                                 
                                 <div className="border-t pt-4 space-y-2">
                                   <h4 className="font-semibold">AI Analysis</h4>
-                                  <p className="text-sm">
-                                    This candidate has strong technical skills matching most job requirements. 
-                                    {candidate.missingSkills.length > 0 && (
-                                      <span>
-                                        {' '}However, they lack experience in 
-                                        <span className="font-medium">
-                                          {' '}{candidate.missingSkills.join(', ')}
-                                        </span>.
-                                      </span>
-                                    )}
-                                  </p>
-                                  <p className="text-sm">
-                                    Based on experience and skill match, this candidate is a 
-                                    <span className={`font-medium ${
-                                      candidate.matchScore >= 80 
-                                        ? 'text-green-600' 
-                                        : candidate.matchScore >= 60 
-                                        ? 'text-yellow-600' 
-                                        : 'text-red-600'
-                                    }`}>
-                                      {' '}{candidate.matchScore >= 80 
-                                        ? 'strong match' 
-                                        : candidate.matchScore >= 60 
-                                        ? 'moderate match' 
-                                        : 'weak match'
-                                      }{' '}
-                                    </span>
-                                    for this position.
-                                  </p>
+                                  <p className="text-sm">{candidate.summary}</p>
+                                  
+                                  <div className="space-y-2">
+                                    <h5 className="font-medium text-sm">Strengths</h5>
+                                    <ul className="list-disc list-inside text-sm space-y-1">
+                                      {candidate.analysis.strengths.map((strength, i) => (
+                                        <li key={i}>{strength}</li>
+                                      ))}
+                                    </ul>
+                                  </div>
+                                  
+                                  <div className="space-y-2">
+                                    <h5 className="font-medium text-sm">Areas for Improvement</h5>
+                                    <ul className="list-disc list-inside text-sm space-y-1">
+                                      {candidate.analysis.weaknesses.map((weakness, i) => (
+                                        <li key={i}>{weakness}</li>
+                                      ))}
+                                    </ul>
+                                  </div>
+                                  
+                                  <div className="space-y-2">
+                                    <h5 className="font-medium text-sm">Recommendations</h5>
+                                    <ul className="list-disc list-inside text-sm space-y-1">
+                                      {candidate.analysis.recommendations.map((rec, i) => (
+                                        <li key={i}>{rec}</li>
+                                      ))}
+                                    </ul>
+                                  </div>
                                 </div>
                               </div>
                             </div>

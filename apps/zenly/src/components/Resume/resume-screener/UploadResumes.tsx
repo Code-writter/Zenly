@@ -1,4 +1,4 @@
-
+'use client'
 import React, { useState } from 'react';
 import { 
   Card,
@@ -13,7 +13,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { FileUp, Upload, X, FileText, Loader2 } from 'lucide-react';
-import { useToast } from '@/hooks/use-toast';
+import { useToast } from '@/components/hooks/use-toast';
 
 interface UploadResumesProps {
   onSubmit: (jobTitle: string, jobDescription: string, files: File[]) => void;
