@@ -219,7 +219,7 @@ const ResumeForm: React.FC<ResumeFormProps> = ({
   return (
     <Card className="w-full max-w-4xl mx-auto">
       <CardHeader>
-        <CardTitle className="text-2xl text-[#0A2463]">Your Resume Information</CardTitle>
+        <CardTitle className="text-2xl text-white">Your Resume Information</CardTitle>
         <CardDescription>
           Enter your resume details or upload an existing resume to optimize
         </CardDescription>
@@ -235,7 +235,7 @@ const ResumeForm: React.FC<ResumeFormProps> = ({
           <form onSubmit={handleSubmit}>
             <CardContent className="space-y-8">
               <div className="space-y-4">
-                <h3 className="text-lg font-semibold flex items-center text-[#0A2463]">
+                <h3 className="text-lg font-semibold flex items-center text-white">
                   <User className="mr-2 h-5 w-5" />
                   Personal Information
                 </h3>
@@ -326,7 +326,7 @@ const ResumeForm: React.FC<ResumeFormProps> = ({
               </div>
               
               <div className="space-y-4">
-                <h3 className="text-lg font-semibold text-[#0A2463]">Professional Summary</h3>
+                <h3 className="text-lg font-semibold text-white ">Professional Summary</h3>
                 <Textarea
                   placeholder="A brief summary of your professional background and key skills..."
                   value={resumeData.summary}
@@ -337,7 +337,7 @@ const ResumeForm: React.FC<ResumeFormProps> = ({
               
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <h3 className="text-lg font-semibold flex items-center text-[#0A2463]">
+                  <h3 className="text-lg font-semibold flex items-center text-white">
                     <Briefcase className="mr-2 h-5 w-5" />
                     Work Experience
                   </h3>
@@ -429,7 +429,7 @@ const ResumeForm: React.FC<ResumeFormProps> = ({
               
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <h3 className="text-lg font-semibold flex items-center text-[#0A2463]">
+                  <h3 className="text-lg font-semibold flex items-center text-white">
                     <GraduationCap className="mr-2 h-5 w-5" />
                     Education
                   </h3>
@@ -533,7 +533,7 @@ const ResumeForm: React.FC<ResumeFormProps> = ({
               </Button>
               <Button 
                 type="submit" 
-                className="bg-[#0A2463] hover:bg-[#0A2463]/90"
+                className="bg-white hover:bg-white/30"
                 disabled={isLoading}
               >
                 {isLoading ? (

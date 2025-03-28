@@ -165,10 +165,10 @@ export default function ResumeBuilderPage() {
   return (
     <div className="container mx-auto py-8 px-4">
       <div className="text-center mb-8">
-        <h1 className="text-3xl font-bold text-[#0A2463] mb-2">
+        <h1 className="text-3xl font-bold text-white mb-2">
           Resume Builder
         </h1>
-        <p className="text-gray-600 max-w-2xl mx-auto">
+        <p className="text-background/200 max-w-2xl mx-auto">
           Create and optimize your resume for better ATS compatibility and job matching.
         </p>
       </div>
@@ -176,7 +176,7 @@ export default function ResumeBuilderPage() {
       {currentStep === Step.JOB_DESCRIPTION && (
         <Card className="w-full max-w-2xl mx-auto">
           <CardHeader>
-            <CardTitle className="text-2xl text-[#0A2463]">Job Description</CardTitle>
+            <CardTitle className="text-2xl text-white">Job Description</CardTitle>
             <CardDescription>
               Enter the job details to generate a tailored resume
             </CardDescription>
@@ -208,7 +208,7 @@ export default function ResumeBuilderPage() {
             <CardFooter className="flex justify-end">
               <Button 
                 type="submit" 
-                className="bg-[#0A2463] hover:bg-[#0A2463]/90"
+                className="mt-5 bg-white hover:bg-white/30"
                 disabled={isGenerating}
               >
                 {isGenerating ? (

@@ -12,7 +12,7 @@ import { Button } from '../ui/button'
 const menuItems = [
     { name: 'Features', href: '/features' },
     { name: 'Contact Us', href: '/contact' },
-    { name: 'About Us', href: '/about' },
+    { name: 'About Us', href: '/about-us' },
 ]
 
 export const HeroHeader = () => {

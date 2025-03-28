@@ -1,3 +1,4 @@
+'use client';
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { Brain, FileUser, ListCheck, Settings2, Sparkles, Zap } from 'lucide-react'
 import { ReactNode } from 'react'
@@ -8,28 +9,43 @@ const features = [
         title: "To-Do List",
         description: "Customizable to-do lists with AI-powered suggestions and personalized templates.",
         link: "#",
-        icon: ListCheck
+        iconName: "ListCheck"
     },
     {
         title: "Resume Builder",
         description: "Resume builder with AI-powered suggestions and personalized templates.",
         link: "#",
-        icon: FileUser
+        iconName: "FileUser"
     },
     {
         title: "Powered By Google Gemini",
         description: "Our platform leverages the power of Google Gemini to provide you with the best possible AI-powered experience.",
         link: "#",
-        icon: Brain
+        iconName: "Brain"
     }
 ]
+
+const iconMap = {
+    ListCheck,
+    FileUser,
+    Brain,
+    Settings2,
+    Sparkles,
+    Zap
+}
 
 export default function Features() {
     return (
         <section className="bg-zinc-50 dark:bg-transparent">
             <div className="@container mx-auto max-w-5xl px-6">
                 <div className="mx-auto mt-12 md:mt-24">
-                    <HoverEffect items={features} className="gap-6" />
+                    <HoverEffect 
+                        items={features.map(feature => ({
+                            ...feature,
+                            icon: iconMap[feature.iconName as keyof typeof iconMap]
+                        }))} 
+                        className="gap-6" 
+                    />
                 </div>
             </div>
         </section>

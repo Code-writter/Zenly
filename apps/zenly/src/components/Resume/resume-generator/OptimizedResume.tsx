@@ -153,7 +153,7 @@ const OptimizedResume: React.FC<OptimizedResumeProps> = ({
                 
                 {resumeData.summary && (
                   <div className="mb-6">
-                    <h2 className="text-md font-bold uppercase text-[#0A2463] border-b border-gray-300 pb-1 mb-3">
+                    <h2 className="text-md font-bold uppercase text-white border-b border-gray-300 pb-1 mb-3">
                       Professional Summary
                     </h2>
                     <p className="text-sm text-gray-700 whitespace-pre-line">{resumeData.summary}</p>
@@ -162,7 +162,7 @@ const OptimizedResume: React.FC<OptimizedResumeProps> = ({
                 
                 {resumeData.experience.length > 0 && (
                   <div className="mb-6">
-                    <h2 className="text-md font-bold uppercase text-[#0A2463] border-b border-gray-300 pb-1 mb-3">
+                    <h2 className="text-md font-bold uppercase text-white border-b border-gray-300 pb-1 mb-3">
                       Experience
                     </h2>
                     {resumeData.experience.map((exp, index) => (
@@ -184,7 +184,7 @@ const OptimizedResume: React.FC<OptimizedResumeProps> = ({
                 
                 {resumeData.education.length > 0 && (
                   <div className="mb-6">
-                    <h2 className="text-md font-bold uppercase text-[#0A2463] border-b border-gray-300 pb-1 mb-3">
+                    <h2 className="text-md font-bold uppercase text-white border-b border-gray-300 pb-1 mb-3">
                       Education
                     </h2>
                     {resumeData.education.map((edu, index) => (
