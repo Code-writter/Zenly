@@ -8,11 +8,11 @@ return(
     <ContainerScroll
       titleComponent={
         <>
-          <h1 className="text-4xl font-semibold text-black dark:text-white">
+          <h1 className="text-4xl mt-30 font-semibold text-black dark:text-white">
           <div className="h-[20rem] flex items-center justify-center">
                 <TextHoverEffect text="ZENLY" />
             </div>
-            <span className="text-2xl md:text-[6rem] font-bold leading-none">
+            <span className="text-md md:text-4xl font-bold leading-none">
             Organize, Optimize, Succeed – Smart To-Do Lists & AI-Powered Resumes!
             </span>
           </h1>
@@ -20,7 +20,7 @@ return(
       }
     >
       <Image
-        src={`/linear.webp`}
+        src={`/hero-banner-img.png`}
         alt="hero"
         height={720}
         width={1400}

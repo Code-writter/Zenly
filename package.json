@@ -22,6 +22,10 @@
     "packages/*"
   ],
   "dependencies": {
-    "@clerk/nextjs": "^6.12.12"
+    "@clerk/nextjs": "^6.12.12",
+    "clsx": "^2.1.1",
+    "motion": "^12.6.2",
+    "react-icons": "^5.5.0",
+    "tailwind-merge": "^3.0.2"
   }
 }
