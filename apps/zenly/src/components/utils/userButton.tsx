@@ -1,14 +1,13 @@
 import { Button } from "../ui/button";
-
-import { LogOut } from "lucide-react";
-
-import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "../ui/dropdown-menu";
+import { LogOut, Moon, Sun } from "lucide-react";
+import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator } from "../ui/dropdown-menu";
 import { SignOutButton, UserButton, useUser } from "@clerk/nextjs";
-
-
+import { useTheme } from "next-themes";
 
 export default function UserButtonWithDropdown() {
-    const { user, isSignedIn } = useUser();
+    const { user } = useUser();
+    const { theme, setTheme } = useTheme();
+
     return(
         <DropdownMenu>
         <DropdownMenuTrigger asChild>
@@ -21,7 +20,24 @@ export default function UserButtonWithDropdown() {
             <UserButton />
             <span className="font-medium">{user?.fullName}</span>
           </div>
-          <DropdownMenuItem className="cursor-pointer">
+          <DropdownMenuSeparator />
+          <DropdownMenuItem 
+            className="cursor-pointer"
+            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+          >
+            {theme === "dark" ? (
+              <>
+                <Sun className="mr-2 h-4 w-4" />
+                <span>Light Mode</span>
+              </>
+            ) : (
+              <>
+                <Moon className="mr-2 h-4 w-4" />
+                <span>Dark Mode</span>
+              </>
+            )}
+          </DropdownMenuItem>
+          <DropdownMenuItem className="cursor-pointer text-destructive focus:text-destructive">
             <LogOut className="mr-2 h-4 w-4" />
             <span><SignOutButton /></span>
           </DropdownMenuItem>   

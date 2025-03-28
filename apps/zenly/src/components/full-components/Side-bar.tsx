@@ -151,18 +151,18 @@ export default function SideBar() {
           ))}
         </nav>
         <div className="mt-auto">
-          <Card x-chunk="dashboard-02-chunk-0">
-            <CardHeader className="-m-3 md:p-4">
-              <CardTitle>{currentDate.format('MMMM YYYY')}</CardTitle>
+          <Card x-chunk="dashboard-02-chunk-0" className="border border-border/50 bg-card">
+            <CardHeader className="p-2 md:p-3">
+              <CardTitle className="text-sm font-medium">{currentDate.format('MMMM YYYY')}</CardTitle>
             </CardHeader>
-            <CardContent className="p-2 pt-0 md:p-4 md:pt-0">
-              <div className="">
-                <div className="grid grid-cols-7 gap-1 text-center text-xs">
-                  {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((day) => (
+            <CardContent className="p-1 md:p-2">
+              <div className="space-y-1">
+                <div className="grid grid-cols-7 gap-0.5 text-center text-[10px] text-muted-foreground">
+                  {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((day) => (
                     <div key={day} className="font-medium">{day}</div>
                   ))}
                 </div>
-                <div className="grid grid-cols-7 gap-1">
+                <div className="grid grid-cols-7 gap-0.5">
                   {Array.from({ length: 42 }, (_, i) => {
                     const dayOffset = i - firstDayOfWeek;
                     const currentDay = firstDayOfMonth.clone().add(dayOffset, 'days');
@@ -170,13 +170,16 @@ export default function SideBar() {
                     const dateString = currentDay.format('YYYY-MM-DD');
                     
                     return (
-                      <div key={i} className="aspect-square p-1">
+                      <div key={i} className="aspect-square p-0.5">
                         <div className={cn(
-                          "relative h-full w-full rounded border border-border/50 flex items-center justify-center",
-                          daysWithTodos.has(dateString) && "bg-black text-white dark:bg-muted/50",
-                          !isCurrentMonth && "opacity-30"
+                          "relative h-full w-full rounded-sm flex items-center justify-center text-[10px]",
+                          daysWithTodos.has(dateString) 
+                            ? "bg-primary/10 text-primary dark:bg-primary/20" 
+                            : "hover:bg-muted/50",
+                          !isCurrentMonth && "opacity-30",
+                          currentDay.isSame(currentDate, 'day') && "font-bold"
                         )}>
-                          <span className="text-xs">{currentDay.format('D')}</span>
+                          <span>{currentDay.format('D')}</span>
                         </div>
                       </div>
                     );
