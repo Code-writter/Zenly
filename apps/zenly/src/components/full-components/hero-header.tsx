@@ -83,14 +83,16 @@ export const HeroHeader = () => {
                             </div>
                             <div className="flex w-full flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit">
                                 <SignedOut>
-                                <ButtonRound
-                                className='bg-transparent text-white border-white'
-                                size="sm">
-                                    <SignInButton />
-                                </ButtonRound>
+
                                 <Button
                                     asChild
                                     className='h-11 w-25 rounded-full hover:bg-transparent border-2 border-white hover:border-2 hover:border-white hover:text-white'
+                                    >
+                                        <SignInButton />
+                                </Button>
+                                <Button
+                                    asChild
+                                    className='h-11 w-25 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 border-2 border-primary hover:border-primary/90'
                                     >
                                         <SignUpButton />
                                 </Button>
