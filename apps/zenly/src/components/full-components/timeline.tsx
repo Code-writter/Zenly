@@ -95,7 +95,7 @@ export default function TimelineDemo() {
           Our platform leverages the power of Google Gemini to provide you with the best possible AI-powered experience.
           </p>
           <div className="mb-8">
-            <div className="flex gap-2 items-center text-neutral-700 dark:text-neutral-300 text-xs md:text-sm">
+            {/* <div className="flex gap-2 items-center text-neutral-700 dark:text-neutral-300 text-xs md:text-sm">
               ✅ Card grid component
             </div>
             <div className="flex gap-2 items-center text-neutral-700 dark:text-neutral-300 text-xs md:text-sm">
@@ -109,7 +109,7 @@ export default function TimelineDemo() {
             </div>
             <div className="flex gap-2 items-center text-neutral-700 dark:text-neutral-300 text-xs md:text-sm">
               ✅ Salman Bhai Fan Club registrations open
-            </div>
+            </div> */}
           </div>
           <div className="grid grid-cols-2 gap-4">
             <Image
