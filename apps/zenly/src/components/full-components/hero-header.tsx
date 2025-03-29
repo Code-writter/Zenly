@@ -8,11 +8,12 @@ import { useScroll } from 'motion/react'
 import { cn } from '@/lib/utils'
 import { SignedIn, SignedOut, SignInButton, SignOutButton, SignUpButton, UserButton } from '@clerk/nextjs'
 import { Button } from '../ui/button'
+import { redirect } from 'next/navigation'
 
 const menuItems = [
-    { name: 'Features', href: '/features' },
-    { name: 'Contact Us', href: '/contact' },
-    { name: 'About Us', href: '/about-us' },
+    { index : 1, name: 'Features', href: '/features' },
+    {index : 2, name: 'Contact Us', href: '/contact' },
+    { index : 3,name: 'About Us', href: '/about-us' },
 ]
 
 export const HeroHeader = () => {
@@ -89,27 +90,24 @@ export const HeroHeader = () => {
                                 <SignedOut>
                                     <Button
                                         asChild
-                                        className='h-11 w-25 rounded-full hover:bg-transparent border-2 border-white hover:border-2 hover:border-white hover:text-white'
+                                        className='h-11 w-25 rounded-full hover:bg-transparent border-2 border-white hover:border-2 hover:border-white hover:text-white ease-in-out duration-300 '
                                     >
                                         <SignInButton />
                                     </Button>
                                     <Button
                                         asChild
-                                        className='h-11 w-25 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 border-2 border-primary hover:border-primary/90'
+                                        className='h-11 w-25 rounded-full bg-secondary text-primary-foreground hover:bg-secondary/90 hover:text-white hover:border-2 hover:border-white  border-2 border-secondary ease-in-out duration-300 '
                                     >
                                         <SignUpButton />
                                     </Button>
                                 </SignedOut>
 
                                 <SignedIn>
-                                    <UserButton appearance={
-                                        {
-                                            elements: {
-                                                button: 'h-11 w-25 rounded-full hover:bg-transparent border-2 border-white hover:border-2 hover:border-white hover:text-white'
-                                            }
-                                        }
-                                    } />
+                                    <UserButton />
+                                
                                     <Button
+                                        asChild
+                                        onClick={() => redirect('/')}
                                         className='h-11 w-25 rounded-full hover:bg-transparent border-2 border-white hover:border-2 hover:border-white hover:text-white'
                                     >
                                         <SignOutButton />

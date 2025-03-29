@@ -3,11 +3,14 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { FileText, Search, Plus } from "lucide-react";
 import ResumeList from "@/components/Resume/ResumeList";
+import { Suspense } from "react";
+import Loader from "@/components/full-components/loader";
 
 export default function SelfImprovementPage() {
     return (
         <div className="flex flex-col gap-8">
             {/* Header Section */}
+            <Suspense fallback={<Loader />}>
             <div>
                 <h1 className="text-3xl font-bold mb-2">Self Improvement Tools</h1>
                 <p className="text-muted-foreground">
@@ -70,6 +73,7 @@ export default function SelfImprovementPage() {
                     <ResumeList />
                 </div>
             </div>
+            </Suspense>
         </div>
     )
 }

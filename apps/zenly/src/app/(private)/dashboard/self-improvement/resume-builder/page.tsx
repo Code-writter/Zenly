@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react';
+import React, { Suspense, useState } from 'react';
 import { useToast } from '@/components/hooks/use-toast';
 import { useGemini } from '@/components/hooks/use-gemini';
 import { useResumes } from '@/components/hooks/use-resumes';
@@ -12,6 +12,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { Loader2 } from 'lucide-react';
+import Loader from '@/components/full-components/loader';
 
 enum Step {
   JOB_DESCRIPTION,
@@ -164,6 +165,7 @@ export default function ResumeBuilderPage() {
 
   return (
     <div className="container mx-auto py-8 px-4">
+      <Suspense fallback={<Loader />}>
       <div className="text-center mb-8">
         <h1 className="text-3xl font-bold text-white mb-2">
           Resume Builder
@@ -244,6 +246,7 @@ export default function ResumeBuilderPage() {
           onEditResume={handleEditResume}
         />
       )}
+      </Suspense>
     </div>
   );
 }

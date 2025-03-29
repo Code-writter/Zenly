@@ -21,6 +21,7 @@ import {
 } from 'lucide-react';
 import { useToast } from '@/components/hooks/use-toast';
 import { ResumeData } from '@/components/Resume/services/gemini';
+import jsPDF from 'jspdf';
 
 interface OptimizedResumeProps {
   resumeData: ResumeData;
@@ -78,7 +79,78 @@ const OptimizedResume: React.FC<OptimizedResumeProps> = ({
     toast({
       description: "Downloading PDF...",
     });
-    // PDF generation logic would go here
+
+    const doc = new jsPDF();
+
+    // Add personal information
+    doc.setFontSize(16);
+    doc.text(resumeData.personalInfo.name, 10, 10);
+    doc.setFontSize(12);
+    doc.text(
+      `${resumeData.personalInfo.email} | ${resumeData.personalInfo.phone} | ${resumeData.personalInfo.location}`,
+      10,
+      20
+    );
+    if (resumeData.personalInfo.website) {
+      doc.text(resumeData.personalInfo.website, 10, 30);
+    }
+
+    // Add professional summary
+    if (resumeData.summary) {
+      doc.setFontSize(14);
+      doc.text('Professional Summary', 10, 40);
+      doc.setFontSize(12);
+      doc.text(resumeData.summary, 10, 50, { maxWidth: 190 });
+    }
+
+    // Add experience
+    if (resumeData.experience.length > 0) {
+      let y = 70;
+      doc.setFontSize(14);
+      doc.text('Experience', 10, y);
+      y += 10;
+      doc.setFontSize(12);
+      resumeData.experience.forEach((exp) => {
+        doc.text(`${exp.title} | ${exp.company} | ${exp.location}`, 10, y);
+        y += 10;
+        doc.text(`${exp.startDate} - ${exp.endDate}`, 10, y);
+        y += 10;
+        doc.text(exp.description, 10, y, { maxWidth: 190 });
+        y += 20;
+      });
+    }
+
+    // Add education
+    if (resumeData.education.length > 0) {
+      let y = doc.lastAutoTable ? doc.lastAutoTable.finalY + 10 : 120;
+      doc.setFontSize(14);
+      doc.text('Education', 10, y);
+      y += 10;
+      doc.setFontSize(12);
+      resumeData.education.forEach((edu) => {
+        doc.text(`${edu.degree} | ${edu.school} | ${edu.location}`, 10, y);
+        y += 10;
+        doc.text(edu.graduationDate, 10, y);
+        y += 10;
+        if (edu.description) {
+          doc.text(edu.description, 10, y, { maxWidth: 190 });
+          y += 20;
+        }
+      });
+    }
+
+    // Add skills
+    if (resumeData.skills) {
+      let y = doc.lastAutoTable ? doc.lastAutoTable.finalY + 10 : 180;
+      doc.setFontSize(14);
+      doc.text('Skills', 10, y);
+      y += 10;
+      doc.setFontSize(12);
+      doc.text(resumeData.skills.split(',').join(', '), 10, y, { maxWidth: 190 });
+    }
+
+    // Save the PDF
+    doc.save('optimized_resume.pdf');
   };
 
   const handleDownloadDOCX = () => {
@@ -95,7 +167,7 @@ const OptimizedResume: React.FC<OptimizedResumeProps> = ({
           <Card className="h-full">
             <CardHeader className="pb-4">
               <div className="flex justify-between items-center">
-                <CardTitle className="text-2xl text-[#0A2463]">Your Optimized Resume</CardTitle>
+                <CardTitle className="text-2xl text-white">Your Optimized Resume</CardTitle>
                 <div className="flex space-x-2">
                   <Button 
                     size="sm" 
@@ -107,7 +179,7 @@ const OptimizedResume: React.FC<OptimizedResumeProps> = ({
                   </Button>
                   <Button 
                     size="sm" 
-                    className="bg-[#0A2463] hover:bg-[#0A2463]/90"
+                    className="bg-white hover:bg-white/50"
                     onClick={handleDownloadPDF}
                   >
                     <Download className="mr-2 h-4 w-4" />

@@ -10,6 +10,8 @@ import { api } from "../../../../../../convex/_generated/api";
 import { Id } from "../../../../../../convex/_generated/dataModel";
 import { useQuery } from "convex/react";
 import { useParams } from "next/navigation";
+import { Loader } from "lucide-react";
+import { Suspense } from "react";
 
 export default function ProjectIdPage() {
   const { projectId } = useParams<{ projectId: Id<"projects"> }>();
@@ -35,6 +37,7 @@ export default function ProjectIdPage() {
 
   return (
     <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
+      <Suspense fallback={<Loader />}>
         <SideBar />
         <div className="flex flex-col">
         {/* <MobileNav navTitle={"My Projects"} navLink="/dashboard/projects" /> */}
@@ -65,6 +68,7 @@ export default function ProjectIdPage() {
           </div>
         </main>
       </div>
+      </Suspense>
     </div>
 
   );

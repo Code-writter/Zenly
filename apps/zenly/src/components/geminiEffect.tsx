@@ -1,7 +1,8 @@
 "use client";
 import { useScroll, useTransform } from "motion/react";
-import React from "react";
+import React, { Suspense } from "react";
 import { GoogleGeminiEffect } from "./ui/google.gemini.effect";
+import Loader from "./full-components/loader";
 
 export default function GoogleGeminiEffectDemo() {
   const ref = React.useRef(null);
@@ -21,6 +22,8 @@ export default function GoogleGeminiEffectDemo() {
       className="h-[400vh] bg-black w-full dark:border dark:border-white/[0.1] rounded-md relative pt-40 overflow-clip"
       ref={ref}
     >
+      <Suspense fallback={<Loader />}>
+      
       <GoogleGeminiEffect
         pathLengths={[
           pathLengthFirst,
@@ -30,6 +33,7 @@ export default function GoogleGeminiEffectDemo() {
           pathLengthFifth,
         ]}
       />
+      </Suspense>
     </div>
   );
 }

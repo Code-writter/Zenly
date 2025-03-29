@@ -8,7 +8,8 @@ import { useUser } from "@clerk/nextjs";
 import moment from "moment";
 import { Skeleton } from "@/components/ui/skeleton";
 import SideBar from "@/components/full-components/Side-bar";
-
+import { Suspense } from "react";
+import Loader from "@/components/full-components/loader";
 export default function ProgressGraph() {
   const { user } = useUser();
   const todos = useQuery(api.todo.getAllTodosOfUser, { userId: user?.id as string });
@@ -16,6 +17,7 @@ export default function ProgressGraph() {
   if (!todos) {
     return (
       <div className="flex items-center justify-center min-h-screen p-4">
+        <Suspense fallback={<Loader />}>
         <Card className="w-full max-w-2xl">
           <CardHeader>
             <CardTitle>Progress Overview</CardTitle>
@@ -28,6 +30,7 @@ export default function ProgressGraph() {
             </div>
           </CardContent>
         </Card>
+        </Suspense>
       </div>
     );
   }

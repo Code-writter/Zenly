@@ -1,4 +1,7 @@
+
 import SignInImage from "@/components/sign-in-img";
+import { auth } from "@clerk/nextjs/server";
+import { redirect } from "next/navigation";
 import { Suspense } from "react";
 
 
@@ -7,6 +10,8 @@ export default function AuthLayout({
 }: {
   children: React.ReactNode;
 }) {
+
+
   return (
     <Suspense fallback={<div>Loading...</div>}>
     <div className=" min-h-screen flex items-center justify-center">

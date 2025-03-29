@@ -13,19 +13,19 @@ const steps = [
     number: "02",
     title: "Generate or Screen",
     description: "Choose to generate an optimized resume or screen candidate applications.",
-    icon: <FileText className="h-12 w-12 text-[#3E92CC]" />
+    icon: <FileText className="h-12 w-12 text-[#9ed2f6]" />
   },
   {
     number: "03",
     title: "AI Analysis",
     description: "Our AI analyzes keywords, skills, and experiences to match with the job requirements.",
-    icon: <Search className="h-12 w-12 text-[#3E92CC]" />
+    icon: <Search className="h-12 w-12 text-white" />
   },
   {
     number: "04",
     title: "Get Results",
     description: "Receive your optimized resume or ranked candidate list with match scores.",
-    icon: <Check className="h-12 w-12 text-[#3E92CC]" />
+    icon: <Check className="h-12 w-12 text-white" />
   }
 ];
 
@@ -34,7 +34,7 @@ const HowItWorks = () => {
     <section className="py-16 px-6 bg-white">
       <div className="container mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-3xl font-bold text-[#0A2463] mb-4">How It Works</h2>
+          <h2 className="text-3xl font-bold text-white mb-4">How It Works</h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             A simple process to optimize your resume or screen candidates with AI
           </p>
@@ -44,11 +44,11 @@ const HowItWorks = () => {
           {steps.map((step, index) => (
             <div key={index} className="relative">
               <div className="bg-gray-50 p-8 rounded-lg border border-gray-200 h-full">
-                <div className="absolute -top-4 -left-4 bg-[#0A2463] text-white w-12 h-12 rounded-full flex items-center justify-center font-bold text-xl">
+                <div className="absolute -top-4 -left-4 bg-white text-white w-12 h-12 rounded-full flex items-center justify-center font-bold text-xl">
                   {step.number}
                 </div>
                 <div className="mt-6 mb-4">{step.icon}</div>
-                <h3 className="text-xl font-semibold text-[#0A2463] mb-3">{step.title}</h3>
+                <h3 className="text-xl font-semibold text-white mb-3">{step.title}</h3>
                 <p className="text-gray-600">{step.description}</p>
               </div>
               {index < steps.length - 1 && (

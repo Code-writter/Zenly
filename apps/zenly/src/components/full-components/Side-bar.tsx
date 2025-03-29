@@ -158,8 +158,37 @@ export default function SideBar() {
             <CardContent className="p-1 md:p-2">
               <div className="space-y-1">
                 <div className="grid grid-cols-7 gap-0.5 text-center text-[10px] text-muted-foreground">
-                  {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((day) => (
-                    <div key={day} className="font-medium">{day}</div>
+                  {[
+                    {
+                      key : 1,
+                      value: 'S',
+                    },
+                   {
+                    key : 2,
+                    value: 'M',
+                   }, 
+                   {
+                    key : 3,
+                    value: 'T',
+                   }, 
+                   {
+                    key : 4,
+                    value: 'W',
+                   }, 
+                   {
+                    key : 5,
+                    value: 'T',
+                   }, 
+                   {
+                    key : 6,
+                    value: 'F',
+                   }, 
+                   {
+                    key : 7,
+                    value: 'S',
+                   }, 
+                   ].map((day) => (
+                    <div key={day.key} className="font-medium">{day.value}</div>
                   ))}
                 </div>
                 <div className="grid grid-cols-7 gap-0.5">

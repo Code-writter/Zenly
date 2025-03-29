@@ -20,7 +20,7 @@ export default function Home(){
                 return <Loader />
             }
             if(isSignedIn){
-                toast(`User is logged in ${user?.emailAddresses[0].emailAddress}`)
+                toast.success(`User is logged in ${user?.fullName}`)
                 redirect('/dashboard')
             }
         }
