@@ -96,7 +96,7 @@ export const HeroHeader = () => {
                                     </Button>
                                     <Button
                                         asChild
-                                        className='h-11 w-25 rounded-full bg-secondary text-primary-foreground hover:bg-secondary/90 hover:text-white hover:border-2 hover:border-white  border-2 border-secondary ease-in-out duration-300 '
+                                        className='h-11 w-25 rounded-full bg-secondary hover:bg-secondary/90 text-white hover:text-white hover:border-2 hover:border-white  border-2 border-secondary ease-in-out duration-300 '
                                     >
                                         <SignUpButton />
                                     </Button>
